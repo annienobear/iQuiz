@@ -17,7 +17,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     static let CELL_STYLE = "quizCellType"
     let quizzes = ["Mathematics", "Marvel Super Heroes", "Science"]
     let subtitle = ["Yeah. We all love Math", "The world needs Heroes", "Learn the world."]
-    let images = ["pencil", "paperplane", "doc"]
+    let images = ["Math", "Marvel", "Science"]
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return quizzes.count
     }
@@ -26,7 +26,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell: QuizCell = self.tableView.dequeueReusableCell(withIdentifier: ViewController.CELL_STYLE) as! QuizCell
         cell.title?.text = quizzes[indexPath.row]
         cell.subtitle?.text = subtitle[indexPath.row]
-        cell.picture?.image = UIImage(systemName: images[indexPath.row])
+        cell.picture?.image = UIImage(named: images[indexPath.row])
         return cell
     }
     
