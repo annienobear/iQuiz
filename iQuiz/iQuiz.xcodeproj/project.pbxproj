@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0010E9512649A9470096717B /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0010E9502649A9470096717B /* AnswerViewController.swift */; };
+		0010E956264A7F680096717B /* FinishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0010E955264A7F680096717B /* FinishViewController.swift */; };
 		0014770826429DB500D5E19A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0014770726429DB500D5E19A /* AppDelegate.swift */; };
 		0014770A26429DB500D5E19A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0014770926429DB500D5E19A /* SceneDelegate.swift */; };
 		0014770C26429DB500D5E19A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0014770B26429DB500D5E19A /* ViewController.swift */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0010E9502649A9470096717B /* AnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
+		0010E955264A7F680096717B /* FinishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishViewController.swift; sourceTree = "<group>"; };
 		0014770426429DB500D5E19A /* iQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0014770726429DB500D5E19A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0014770926429DB500D5E19A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				0014771226429DB800D5E19A /* LaunchScreen.storyboard */,
 				0014771526429DB800D5E19A /* Info.plist */,
 				0014773F264440A200D5E19A /* QuestionViewController.swift */,
+				0010E9502649A9470096717B /* AnswerViewController.swift */,
+				0010E955264A7F680096717B /* FinishViewController.swift */,
 			);
 			path = iQuiz;
 			sourceTree = "<group>";
@@ -263,8 +269,10 @@
 			files = (
 				0014770C26429DB500D5E19A /* ViewController.swift in Sources */,
 				0014770826429DB500D5E19A /* AppDelegate.swift in Sources */,
+				0010E9512649A9470096717B /* AnswerViewController.swift in Sources */,
 				00147740264440A200D5E19A /* QuestionViewController.swift in Sources */,
 				0014770A26429DB500D5E19A /* SceneDelegate.swift in Sources */,
+				0010E956264A7F680096717B /* FinishViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

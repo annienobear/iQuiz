@@ -29,9 +29,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.picture?.image = UIImage(named: images[indexPath.row])
         return cell
     }
+
     
-    func tableView(_ tableView: UITableView, didSelectRowAt: IndexPath) {
-        NSLog("\(didSelectRowAt)")
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let indexPath = tableView.indexPathForSelectedRow{
+            let questionSet = indexPath.row
+            let questionView = segue.destination as! QuestionViewController
+            questionView.sectionNum = questionSet
+        }
     }
         
     @IBOutlet weak var tableView: UITableView!
