@@ -14,24 +14,22 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     static let CELL_STYLE = "ansCellType"
     public var sectionNum: Int! = nil
     public var questionNum: Int! = nil
-    public var currentSection: [String]! = nil
+    public var currentSection: [String]! = []
     public var totalScore: Int! = nil
-    public var currentAns: [String]! = nil
+    public var currentAnsList: [String]! = []
+    public var currentAns: String! = nil
+    public var questionData: [Quiz]! = nil
     @IBOutlet weak var questionLabel: UILabel!
-    let mathAns = [["2", "3", "4", "5"], ["0", "1", "2", "3"]]
-    let marvelAns = [["1", "2", "3", "0"]]
-    let scienceAns = [["O2", "CO2", "N2", "Noble gasses"]]
-    let mathQuestions = ["What is 1 + 1?", "What is 5 - 4?"]
-    let marvelQuestions = ["Hawkeye has how many children?"]
-    let scienceQuestions = ["What does air consist of most?"]
     public var selectedAns: String! = nil
+    public var url: String! = nil
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentAns.count
+        return currentAnsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: AnswerCell = self.tableView.dequeueReusableCell(withIdentifier: QuestionViewController.CELL_STYLE) as! AnswerCell
-        cell.ans?.text = currentAns[indexPath.row]
+        cell.ans?.text = currentAnsList[indexPath.row]
         return cell
     }
     
@@ -39,6 +37,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSLog("QuestionView" + String(sectionNum))
         self.tableView.register(UINib(nibName: "AnswerCell", bundle: nil), forCellReuseIdentifier: "AnswerCell")
         tableView.dataSource = self
         tableView.delegate = self
@@ -48,19 +47,13 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         if totalScore == nil {
             totalScore = 0
         }
-        NSLog(String(sectionNum))
-        switch sectionNum {
-        case 1:
-            currentSection = marvelQuestions
-            currentAns = marvelAns[questionNum]
-        case 2:
-            currentSection = scienceQuestions
-            currentAns = scienceAns[questionNum]
-        default:
-            currentSection = mathQuestions
-            currentAns = mathAns[questionNum]
+        let question = questionData[sectionNum]
+        for q in question.questions {
+            currentSection.append(q.text)
         }
+        currentAnsList = question.questions[questionNum].answers
         questionLabel.text = currentSection[questionNum]
+        currentAns = question.questions[questionNum].answer
         let recognizerR: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight(_:)))
         recognizerR.direction = .right
         self.view.addGestureRecognizer(recognizerR)
@@ -91,11 +84,19 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             vc.questionText = currentSection[questionNum]
             vc.maxNum = currentSection.count
             vc.totalScore = totalScore
+            vc.data = questionData
+            vc.url = url
+            let temp = Int(currentAns) ?? 0
+            vc.correctAns = currentAnsList[temp - 1]
+        }
+        
+        if let v = segue.destination as? ViewController{
+            v.urlString = url
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt: IndexPath) {
-        selectedAns = currentAns[didSelectRowAt.row]
+        selectedAns = currentAnsList[didSelectRowAt.row]
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

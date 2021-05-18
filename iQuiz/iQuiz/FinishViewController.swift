@@ -9,6 +9,7 @@ import UIKit
 
 class FinishViewController: UIViewController {
     public var scoreOnQuiz: Int! = nil
+    public var url: String! = nil
     public var totalQuestion: Int! = nil
     @IBOutlet weak var message: UILabel!
     @IBOutlet weak var score: UILabel!
@@ -18,6 +19,12 @@ class FinishViewController: UIViewController {
     
     @objc func swipeRight(_ sender : UISwipeGestureRecognizer) {
         self.performSegue(withIdentifier: "toMain", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let v = segue.destination as? ViewController{
+            v.urlString = url
+        }
     }
     
     override func viewDidLoad() {

@@ -15,7 +15,9 @@ class AnswerViewController: UIViewController {
     public var maxNum: Int! = nil
     public var totalScore: Int! = nil
     public var questionText: String! = nil
-    let correctAns = [["2", "1"], ["3"], ["N2"]]
+    public var correctAns: String! = nil
+    public var data: [Quiz]? = nil
+    public var url: String! = nil
     @IBOutlet weak var alarm: UILabel!
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var Ans: UILabel!
@@ -32,10 +34,16 @@ class AnswerViewController: UIViewController {
             vc.sectionNum = section
             vc.questionNum = questionNum
             vc.totalScore = totalScore
+            vc.questionData = data
+            vc.url = url
         }
         if let vc = segue.destination as? FinishViewController {
             vc.scoreOnQuiz = totalScore
             vc.totalQuestion = maxNum
+            vc.url = url
+        }
+        if let v = segue.destination as? ViewController{
+            v.urlString = url
         }
     }
     
@@ -53,7 +61,9 @@ class AnswerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if ans == correctAns[section][questionNum] {
+        NSLog("AnsView" + String(section))
+
+        if ans == correctAns {
             alarm.text = "You got it right"
             totalScore += 1
         } else {
@@ -65,7 +75,7 @@ class AnswerViewController: UIViewController {
         recognizerR.direction = .right
         self.view .addGestureRecognizer(recognizerL)
         self.view.addGestureRecognizer(recognizerR)
-        Ans.text = "Correct: " + correctAns[section][questionNum]
+        Ans.text = "Correct: " + correctAns
         question.text = questionText
         questionNum = questionNum + 1
     }
